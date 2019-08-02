@@ -168,6 +168,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/mall/region'),
         name: 'region',
         meta: {
+          perms: ['GET /admin/region/list', 'GET /admin/region/clist'],
           title: '行政区域',
           noCache: true
         }
@@ -424,6 +425,30 @@ export const asyncRouterMap = [
         meta: {
           perms: ['GET /admin/storage/list', 'POST /admin/storage/create', 'POST /admin/storage/update', 'POST /admin/storage/delete'],
           title: '对象存储',
+          noCache: true
+        }
+      }
+    ]
+  },
+
+  {
+    path: '/tianyu',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'tianyuManage',
+    meta: {
+      title: '天瑜瑜伽',
+      icon: 'chart'
+    },
+    children: [
+      {
+        path: 'course',
+        component: () => import('@/views/tianyu/course'),
+        name: 'course',
+        meta: {
+          perms: ['GET /admin/course/list', 'POST /admin/course/create', 'GET /admin/course/read', 'POST /admin/course/update', 'POST /admin/course/delete'],
+          title: '课程管理',
           noCache: true
         }
       }

@@ -14,6 +14,17 @@
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+        <div class="card-panel" @click="handleSetLineChartData('courses')">
+          <div class="card-panel-icon-wrapper icon-documentation">
+            <svg-icon icon-class="documentation" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">课程数量</div>
+            <count-to :start-val="0" :end-val="courseTotal" :duration="3000" class="card-panel-num"/>
+          </div>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel" @click="handleSetLineChartData('messages')">
           <div class="card-panel-icon-wrapper icon-message">
             <svg-icon icon-class="message" class-name="card-panel-icon" />
@@ -63,7 +74,8 @@ export default {
       userTotal: 0,
       goodsTotal: 0,
       productTotal: 0,
-      orderTotal: 0
+      orderTotal: 0,
+      courseTotal: 0
     }
   },
   created() {
@@ -72,6 +84,7 @@ export default {
       this.goodsTotal = response.data.data.goodsTotal
       this.productTotal = response.data.data.productTotal
       this.orderTotal = response.data.data.orderTotal
+      this.courseTotal = response.data.data.courseTotal
     })
   },
   methods: {
@@ -116,6 +129,9 @@ export default {
       .icon-people {
          background: #40c9c6;
       }
+      .icon-documentation {
+        background: #d15fee;
+      }
       .icon-message {
         background: #36a3f7;
       }
@@ -128,6 +144,9 @@ export default {
     }
     .icon-people {
       color: #40c9c6;
+    }
+    .icon-documentation {
+      color: #d15fee;
     }
     .icon-message {
       color: #36a3f7;
