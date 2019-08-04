@@ -39,3 +39,11 @@ export function deleteCourse(data) {
     data
   })
 }
+
+export function courseOptions(query) {
+  return request({
+    url: '/course/options',
+    method: 'get',
+    params: query
+  })
+}

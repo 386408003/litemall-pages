@@ -61,32 +61,6 @@
   </div>
 </template>
 
-<style>
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #20a0ff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-  text-align: center;
-}
-.avatar {
-  width: 120px;
-  height: 120px;
-  display: block;
-}
-</style>
-
 <script>
 import { listCourse, createCourse, updateCourse, deleteCourse } from '@/api/course'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
@@ -123,6 +97,12 @@ export default {
       rules: {
         name: [
           { required: true, message: '课程名称不能为空', trigger: 'blur' }
+        ],
+        totalTime: [
+          { required: true, message: '课程时长不能为空', trigger: 'blur' }
+        ],
+        peopleNum: [
+          { required: true, message: '每节人数不能为空', trigger: 'blur' }
         ]
       },
       downloadLoading: false

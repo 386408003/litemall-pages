@@ -64,3 +64,13 @@
 			require('autoprefixer')()
 		]
 	}
+
+语句结尾分号问题，报错 "Extra semicolon"
+	使用 vue-cli 构建的项目，模版是 webpack ，默认的 eslint 配置是以 standard 为基础的，要求是不使用分号。
+	如果我们希望要使用分号，则在 rules 字段增加配置：
+	'semi': ["error", "always"]
+	这样，你的 js 代码每一个表达式的结尾就应该以分号结尾，否则 eslint 会给出错误提示。
+	如果你希望 eslint 不检查分号这一项，这个时候结尾的分号，你加也可以，不加也可以，在 rules 字段配置：
+	'semi': 0
+
+语句结尾空格问题，报错 "Trailing spaces not allowed"
