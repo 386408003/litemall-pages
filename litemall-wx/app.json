@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/orderCourse/orderCourse",
+    "pages/action/action",
     "pages/catalog/catalog",
     "pages/newGoods/newGoods",
     "pages/hotGoods/hotGoods",
@@ -41,7 +43,7 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "litemall小程序商城",
+    "navigationBarTitleText": "天瑜瑜伽工作室",
     "enablePullDownRefresh": true,
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFFFFF",
@@ -60,16 +62,16 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/catalog/catalog",
-        "iconPath": "static/images/category.png",
-        "selectedIconPath": "static/images/category@selected.png",
-        "text": "分类"
+        "pagePath": "pages/orderCourse/orderCourse",
+        "iconPath": "static/images/orderCourse.png",
+        "selectedIconPath": "static/images/orderCourse@selected.png",
+        "text": "预约"
       },
       {
-        "pagePath": "pages/cart/cart",
-        "iconPath": "static/images/cart.png",
-        "selectedIconPath": "static/images/cart@selected.png",
-        "text": "购物车"
+        "pagePath": "pages/action/action",
+        "iconPath": "static/images/action.png",
+        "selectedIconPath": "static/images/action@selected.png",
+        "text": "活动"
       },
       {
         "pagePath": "pages/ucenter/index/index",

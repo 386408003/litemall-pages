@@ -1,12 +1,9 @@
 <view class="container">
 
-  <view class="about-item">
-
-    <view class="item-left">
-      <label>项目名称: </label>
-       <text>{{shopInfo.name}}</text> 
-    </view>
-
+  <view class="header">
+    <view class="wx-title">{{shopInfo.name}}</view>
+    <view class="wx-desc">天瑜瑜伽工作室</view>
+    <image src="https://wxapi.hkyzf.top/wx/storage/fetch/obgqjj3e2udfza7ssv6h.png" class="logoimg"></image>
   </view>
 
   <view class="about-item">
@@ -43,14 +40,7 @@
   <view class="about-item">
     <view class="item-left">
       <label>当前版本: </label>
-       <text>1.0.0</text> 
-    </view>
-  </view>
-
-  <view class="about-item">
-    <view class="item-left">
-      <label>开源协议: </label>
-       <text>MIT</text> 
+       <text>{{shopInfo.version}}</text> 
     </view>
   </view>
 

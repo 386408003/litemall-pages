@@ -38,7 +38,7 @@
         </div>
       </div> -->
     </el-form>
-
+    <div class="footer"><a href="http://www.beian.miit.gov.cn/">豫ICP备19029160号</a></div>
   </div>
 </template>
 
@@ -55,8 +55,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin123',
-        password: 'admin123'
+        username: 'tianyu',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, message: '管理员账户不允许为空', trigger: 'blur' }],
@@ -207,5 +207,15 @@ $light_gray:#eee;
     cursor: pointer;
     user-select: none;
   }
+}
+.footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:50px;
+  font-size: 20px;
+  color: $light_gray;
+  margin: 0px auto 0px auto;
+  text-align: center;
 }
 </style>

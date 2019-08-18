@@ -1,22 +1,32 @@
 /* about.wxss */
 
-page{
-  height: 100%;
-  background-color: #F2f2f2;
+.container{
+  background: white;
+  font-family: '微软雅黑';
 }
-.page-view{
-  height: 100%;
+
+.header{
+  padding: 40rpx;
+  position: relative;
 }
-.banner-image{
-  width: 100%;
-  height: 350rpx;
-  background: #ee1;
-  margin-bottom: 30rpx;
-  border-bottom: solid #f2f2f2 0.5dp;
+.wx-title{
+  font-size: 46rpx;
+  font-weight: bold;
+}
+.wx-desc{
+  font-size: 32rpx;
+  color: #aaa;
+  line-height: 67rpx;
+}
+.logoimg{
+  width:100rpx;
+  height:100rpx;
+  position: absolute;
+  top:40rpx;
+  right:40rpx;
 }
 
 .about-item{
-  background: white;
   border-top: solid #f2f2f2 0.5rpx;
   border-bottom: solid #f2f2f2 0.5rpx;
   width: 100%;
@@ -25,7 +35,6 @@ page{
   flex-direction: row;
   justify-content: space-between;
 }
-
 .item-left{
   font-size: 32rpx;
   margin-left: 15rpx;
@@ -40,5 +49,5 @@ page{
 }
 .right-icon{
   width: 40rpx;
-   height: 40rpx;
+  height: 40rpx;
 }

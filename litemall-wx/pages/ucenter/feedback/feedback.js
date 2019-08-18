@@ -6,7 +6,7 @@ var app = getApp();
 
 Page({
   data: {
-    array: ['请选择反馈类型', '商品相关', '功能异常', '优化建议', '其他'],
+    array: ['请选择反馈类型', '课程相关', '功能异常', '优化建议', '其他'],
     index: 0,
     content: '',
     contentLength: 0,

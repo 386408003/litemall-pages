@@ -7,7 +7,7 @@ Page({
   data: {
     userInfo: {
       nickName: '点击登录',
-      avatarUrl: 'https://wxapi.hkyzf.top/wx/storage/fetch/f9qibjalwjwnacvejw9e.png'
+      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
     },
     order: {
       unpaid: 0,
@@ -15,8 +15,6 @@ Page({
       unrecv: 0,
       uncomment: 0
     },
-    phoneNumber: '',
-    hiddenPhoneModal: true,
     hasLogin: false
   },
   onLoad: function(options) {
@@ -98,12 +96,7 @@ Page({
     };
   },
   goCoupon() {
-    wx.showToast({
-      title: '目前不支持',
-      icon: 'none',
-      duration: 2000
-    });
-    /*if (this.data.hasLogin) {
+    if (this.data.hasLogin) {
       wx.navigateTo({
         url: "/pages/ucenter/couponList/couponList"
       });
@@ -111,7 +104,7 @@ Page({
       wx.navigateTo({
         url: "/pages/auth/login/login"
       });
-    };*/
+    };
   },
   goGroupon() {
     if (this.data.hasLogin) {
@@ -125,12 +118,7 @@ Page({
     };
   },
   goCollect() {
-    wx.showToast({
-      title: '目前不支持',
-      icon: 'none',
-      duration: 2000
-    });
-    /* if (this.data.hasLogin) {
+    if (this.data.hasLogin) {
       wx.navigateTo({
         url: "/pages/ucenter/collect/collect"
       });
@@ -138,7 +126,7 @@ Page({
       wx.navigateTo({
         url: "/pages/auth/login/login"
       });
-    };*/
+    };
   },
   goFeedback(e) {
     if (this.data.hasLogin) {
@@ -201,70 +189,6 @@ Page({
       }
     });
   },
-
-  //打开输入手机号模块
-  goPhoneNumber() {
-    if (this.data.hasLogin) {
-      var phoneNumber = wx.getStorageSync('phoneNumber');
-      if (!phoneNumber) {
-        this.setData({
-          hiddenPhoneModal: false
-        })
-      } else {
-        wx.showToast({
-          title: '已绑定成功',
-          icon: 'success',
-          duration: 2000
-        });
-      }
-    } else {
-      wx.navigateTo({
-        url: "/pages/auth/login/login"
-      });
-    };
-  },
-  //获取电话号码
-  getPhoneNumber: function (e) {
-    console.log(e.detail.value)
-    this.setData({
-      phoneNumber: e.detail.value
-    });
-  },
-  //确认按钮
-  confirm: function () {
-    let that = this;
-    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
-    var isMobile = mobile.exec(that.data.phoneNumber)
-    if (!isMobile) {
-      wx.showModal({
-        title: '提示！！',
-        content: '你输入的电话格式不符，请重新检查填写',
-      })
-    } else {
-      util.request(api.AuthBindPhoneInput, {
-        phoneNumber: that.data.phoneNumber
-      }, 'POST').then(function (res) {
-        if (res.errno === 0) {
-          wx.setStorageSync('phoneNumber', that.data.phoneNumber);
-          wx.showToast({
-            title: '绑定成功',
-            icon: 'success',
-            duration: 2000
-          });
-        }
-      });
-      that.setData({
-        hiddenPhoneModal: true
-      });
-    }
-  },
-  //取消按钮
-  cancel: function () {
-    this.setData({
-      hiddenPhoneModal: true
-    })
-  },
-
   goAfterSale: function() {
     wx.showToast({
       title: '目前不支持',

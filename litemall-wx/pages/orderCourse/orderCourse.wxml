@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="cate-nav">
+    <scroll-view class="cate-nav-body" scroll-left="{{scrollLeft}}" scroll-x="true">
+      <view bindtap="selectDate" wx:for="{{ calendar }}" wx:for-item="item" wx:for-index="index" data-date="{{ item.date}}" data-index="{{ index }}" class='listItem {{index == currentIndex ? "current":""}}' wx:key=''>
+        <text class='name'>{{ item.week }}</text>
+        <text class='date'>{{ item.date }}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <scroll-view class="cate-nav-body2" style="height:{{scrollHeight}}rpx;" scroll-y="true">
+    <swiper current="{{currentIndex}}" duration="300" style="height:{{scrollHeight}}rpx;">
+      <swiper-item wx:for="{{ calendar }}" wx:key='' bindtouchmove="handletouchmove" bindtouchend="handletouchend" >
+        <view class="bus-list" wx:for="{{ item.courseInfo }}" wx:key='' wx:for-item="course">
+          <view class="bus-list-item {{ course.peopleLeft==0?'disabled':'' }}">
+            <view class="bus-time">{{ course.startTime }}</view>
+            <view class="tobooking" bindtap="orderCourse" data-courseId="{{ course.coursePlanId }}" data-cDate="{{ course.cDate }}" data-startTime="{{ course.startTime }}" data-peopleLeft="{{ course.peopleLeft }}"> 预约 </view>
+            <view class="detail">
+                <view class="start"> {{ course.name }} </view>
+                <view class="end">
+                  {{ course.peopleLeft==0?'约满':'还可预约'+course.peopleLeft+'人' }}
+                </view>
+              <view class="tags">
+                <text class="price">({{ course.totalTime }})</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </scroll-view>
+</view>

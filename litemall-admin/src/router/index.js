@@ -457,7 +457,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/tianyu/coursePlan'),
         name: 'coursePlan',
         meta: {
-          perms: ['GET /admin/coursePlan/list', 'POST /admin/coursePlan/create', 'GET /admin/coursePlan/read', 'POST /admin/coursePlan/update', 'POST /admin/coursePlan/delete'],
+          perms: ['GET /admin/coursePlan/list', 'POST /admin/coursePlan/create', 'POST /admin/coursePlan/createBat', 'GET /admin/coursePlan/read', 'POST /admin/coursePlan/update', 'POST /admin/coursePlan/delete'],
           title: '课程安排',
           noCache: true
         }

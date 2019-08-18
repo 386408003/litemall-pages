@@ -5,6 +5,10 @@
     <div class="filter-container">
       <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 200px;" placeholder="请输入广告标题"/>
       <el-input v-model="listQuery.content" clearable class="filter-item" style="width: 200px;" placeholder="请输入广告内容"/>
+      <el-select v-model="listQuery.position" clearable class="filter-item" placeholder="请选择广告位置">
+        <el-option :value="1" label="首页"/>
+        <el-option :value="2" label="活动页"/>
+      </el-select>
       <el-button v-permission="['GET /admin/ad/list']" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
       <el-button v-permission="['POST /admin/ad/create']" class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
       <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>
@@ -71,6 +75,7 @@
         <el-form-item label="广告位置" prop="position">
           <el-select v-model="dataForm.position" placeholder="请选择">
             <el-option :value="1" label="首页"/>
+            <el-option :value="2" label="活动页"/>
           </el-select>
         </el-form-item>
         <el-form-item label="活动链接" prop="link">
@@ -139,6 +144,7 @@ export default {
         limit: 20,
         name: undefined,
         content: undefined,
+        position: undefined,
         sort: 'add_time',
         order: 'desc'
       },

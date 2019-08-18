@@ -7,22 +7,18 @@ const app = getApp();
 
 Page({
   data: {
-    newGoods: [],
-    hotGoods: [],
-    topics: [],
-    brands: [],
-    groupons: [],
-    floorGoods: [],
     banner: [],
     channel: [],
-    coupon: [],
+    systemConfig: [],
+    tianyu_wx_home_title: '',
+    tianyu_wx_home_info: '',
     goodsCount: 0
   },
 
   onShareAppMessage: function() {
     return {
-      title: 'litemall小程序商场',
-      desc: '开源微信小程序商城',
+      title: '天瑜瑜珈工作室',
+      desc: '天瑜瑜伽工作室',
       path: '/pages/index/index'
     }
   },
@@ -38,17 +34,26 @@ Page({
     let that = this;
     util.request(api.IndexUrl).then(function(res) {
       if (res.errno === 0) {
+        //console.log(res.data.channel[0]);
         that.setData({
-          newGoods: res.data.newGoodsList,
-          hotGoods: res.data.hotGoodsList,
-          topics: res.data.topicList,
-          brands: res.data.brandList,
-          floorGoods: res.data.floorGoodsList,
           banner: res.data.banner,
-          groupons: res.data.grouponList,
           channel: res.data.channel,
-          coupon: res.data.couponList
+          systemConfig: res.data.systemConfig
         });
+        if (res.data.systemConfig) {
+          if(res.data.systemConfig[0].keyName == "tianyu_wx_home_title") {
+            that.setData({
+              tianyu_wx_home_title: res.data.systemConfig[0].keyValue,
+              tianyu_wx_home_info: res.data.systemConfig[1].keyValue
+            });
+          } else {
+            that.setData({
+              tianyu_wx_home_info: res.data.systemConfig[0].keyValue,
+              tianyu_wx_home_title: res.data.systemConfig[1].keyValue
+            });
+          }
+          
+        }
       }
     });
     util.request(api.GoodsCount).then(function (res) {

@@ -46,8 +46,13 @@ Page({
     });
   },
   accountLogin: function() {
-    wx.navigateTo({
-      url: "/pages/auth/accountLogin/accountLogin"
+    wx.showToast({
+      title: '目前不支持',
+      icon: 'none',
+      duration: 2000
     });
+    /*wx.navigateTo({
+      url: "/pages/auth/accountLogin/accountLogin"
+    });*/
   }
 })

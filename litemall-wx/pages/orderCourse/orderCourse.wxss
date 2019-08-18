@@ -1,0 +1,142 @@
+/* pages/orderTime/index.wxss */
+.container {
+  background: #f9f9f9;
+}
+.cate-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+.cate-nav-body{
+  height: 185rpx;
+  white-space: nowrap;
+  background: #fff;
+  margin: -1rpx 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+.cate-nav .listItem{
+  text-align: center;
+  width: 188rpx;
+  height: 130rpx;
+  background-color: #f1f2f6;
+  padding-top: 25rpx;
+  margin-top: 30rpx;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid #b9c1c8;
+  border-radius: 40rpx;
+}
+.cate-nav .listItem text{
+  display: block;
+}
+.cate-nav .listItem .name{
+  font-size: 30rpx;
+}
+.cate-nav .listItem .date{
+  font-size: 30rpx;
+}
+.cate-nav .current{
+  background-color: #47acaf;
+}
+.cate-nav .current text{
+  color: #fff;
+}
+
+.cate-nav-body2 {
+  left: 0;
+  margin-top: 175rpx;
+}
+
+.bus-list .bus-list-item {
+  position: relative;
+  height: 175rpx;
+  background-color: #fff; 
+  margin: 16rpx 0;
+  border: 3rpx solid #e5e5e5;
+  border-width: 2rpx 0;
+}
+.bus-list .bus-list-item::before,.bus-list .bus-list-item::after {
+  position: absolute;
+  left: 155rpx;
+  content: '';
+  width: 30rpx;
+  height: 15rpx;
+  background-color: #efefef;
+  border: 2rpx solid #e5e5e5;
+}
+.bus-list .bus-list-item::before {
+  border-radius: 0 0 60rpx 60rpx;
+  border-top: none;
+  top: -2rpx;
+}
+.bus-list .bus-list-item::after {
+  border-radius: 60rpx 60rpx 0 0;
+  border-bottom: none;
+  bottom: -2rpx;
+}
+
+.bus-list .bus-list-item .bus-time {
+  position: absolute;
+  left: 0;
+  width: 175rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 40rpx 0;
+  color: #00b358;
+  text-align: center;
+  font-size: 40rpx;
+  font-family: Arial;
+  border-right: 2rpx dashed #e5e5e5;
+}
+
+.bus-list .bus-list-item .tobooking {
+  background-color: rgb(84, 177, 129);
+  position: absolute;
+  right: 0;
+  width: 120rpx;
+  height: 172rpx;
+  line-height: 175rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+}
+.bus-list .bus-list-item.disabled .tobooking {
+  background-color: #bebcbc;
+}
+
+.bus-list .bus-list-item .detail {
+  height: 80rpx;
+  padding: 15rpx 0;
+  margin: 0 140rpx 0 144rpx;
+  margin-left: 190rpx;
+}
+.bus-list .bus-list-item .start {
+  color: #38bb84;
+  font-size: 55rpx;
+}
+.bus-list .bus-list-item .end {
+  color: #333333;
+  font-size: 30rpx;
+  margin: 15rpx;
+  margin-top: 25rpx;
+}
+.bus-list .bus-list-item.disabled .end {
+  color: #f10e0e;
+}
+.bus-list .bus-list-item .tags {
+  width: 160rpx;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  margin-right: 150rpx;
+  margin-top: 60rpx;
+  top: 0;
+}
+.bus-list .bus-list-item .price {
+  font-family: Arial;
+  color: #fd8f01;
+  font-size: 45rpx;
+  font-weight: 600;
+}

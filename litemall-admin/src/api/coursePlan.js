@@ -43,7 +43,7 @@ export function deleteCoursePlan(data) {
 export function createCoursePlanBat(query) {
   return request({
     url: '/coursePlan/createBat',
-    method: 'get',
+    method: 'post',
     params: query
   })
 }

@@ -1,12 +1,12 @@
 // 以下是业务服务器API地址
 // 本机开发时使用
-var WxApiRoot = 'http://localhost:8080/wx/';
+// var WxApiRoot = 'http://localhost:8080/wx/';
 // 局域网测试使用
 // var WxApiRoot = 'http://192.168.0.101:8080/wx/';
 // 云平台部署时使用
 // var WxApiRoot = 'http://118.24.0.153:8080/wx/';
 // 云平台上线时使用
-// var WxApiRoot = 'https://www.menethil.com.cn/wx/';
+var WxApiRoot = 'https://wxapi.hkyzf.top/wx/';
 
 module.exports = {
   IndexUrl: WxApiRoot + 'home/index', //首页数据接口
@@ -97,4 +97,10 @@ module.exports = {
   UserIndex: WxApiRoot + 'user/index', //个人页面用户相关信息
   IssueList: WxApiRoot + 'issue/list', //帮助信息
 
+  AdList: WxApiRoot + 'ad/list', //活动信息
+  AboutList: WxApiRoot + 'home/about', //关于我们信息
+  AuthBindPhoneInput: WxApiRoot + 'auth/bindPhoneInput', //绑定微信手机号
+  CourseList: WxApiRoot + 'course/list', //课程列表带日期
+  CourseInfo: WxApiRoot + 'course/courseInfo', //课程列表
+  OrderCourse: WxApiRoot + 'course/courseInfo', //预约课程
 };
