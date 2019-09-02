@@ -3,6 +3,7 @@
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <view class="info">
       <text class="name">{{userInfo.nickName}}</text>
+      <text class="course">课程剩余 {{userInfo.courseNum}} 节</text>
     </view>
   </view>
 

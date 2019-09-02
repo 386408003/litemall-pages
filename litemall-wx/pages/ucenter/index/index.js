@@ -7,7 +7,8 @@ Page({
   data: {
     userInfo: {
       nickName: '点击登录',
-      avatarUrl: 'https://wxapi.hkyzf.top/wx/storage/fetch/f9qibjalwjwnacvejw9e.png'
+      avatarUrl: 'https://wxapi.hkyzf.top/wx/storage/fetch/f9qibjalwjwnacvejw9e.png',
+      courseNum: 0
     },
     order: {
       unpaid: 0,

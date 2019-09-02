@@ -41,6 +41,15 @@ page {
   margin-bottom: 10rpx;
 }
 
+.profile-info .course {
+  display: block;
+  height: 45rpx;
+  line-height: 45rpx;
+  color: #fff;
+  font-size: 27rpx;
+  margin-bottom: 10rpx;
+}
+
 .profile-info .level {
   display: block;
   height: 30rpx;
