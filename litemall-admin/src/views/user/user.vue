@@ -25,6 +25,8 @@
 
       <el-table-column align="center" label="生日" prop="birthday"/>
 
+      <el-table-column align="center" label="课程数量" prop="courseNum" sortable/>
+
       <el-table-column align="center" label="用户等级" prop="userLevel">
         <template slot-scope="scope">
           <el-tag >{{ levelDic[scope.row.userLevel] }}</el-tag>
@@ -93,8 +95,8 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['用户名', '手机号码', '性别', '生日', '状态']
-        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status']
+        const tHeader = ['用户名', '手机号码', '性别', '生日', '课程数量', '状态']
+        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'courseNum', 'status']
         excel.export_json_to_excel2(tHeader, this.list, filterVal, '用户信息')
         this.downloadLoading = false
       })

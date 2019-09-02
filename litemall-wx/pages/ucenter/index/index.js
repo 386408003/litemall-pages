@@ -99,7 +99,7 @@ Page({
   },
   goCoupon() {
     wx.showToast({
-      title: '目前不支持',
+      title: '暂未开放',
       icon: 'none',
       duration: 2000
     });
@@ -126,7 +126,7 @@ Page({
   },
   goCollect() {
     wx.showToast({
-      title: '目前不支持',
+      title: '暂未开放',
       icon: 'none',
       duration: 2000
     });
@@ -205,7 +205,8 @@ Page({
   //打开输入手机号模块
   goPhoneNumber() {
     if (this.data.hasLogin) {
-      var phoneNumber = wx.getStorageSync('phoneNumber');
+      var phoneNumber = this.data.userInfo.phoneNumber;
+      // console.log(phoneNumber);
       if (!phoneNumber) {
         this.setData({
           hiddenPhoneModal: false
@@ -245,7 +246,11 @@ Page({
         phoneNumber: that.data.phoneNumber
       }, 'POST').then(function (res) {
         if (res.errno === 0) {
-          wx.setStorageSync('phoneNumber', that.data.phoneNumber);
+          let userPhone = "userInfo.phoneNumber";
+          that.setData({
+            [userPhone]: that.data.phoneNumber
+          });
+          wx.setStorageSync('userInfo', that.data.userInfo);
           wx.showToast({
             title: '绑定成功',
             icon: 'success',

@@ -6,8 +6,6 @@ Page({
   data: {
     orderId: 0,
     type: 0,
-    valueId: 0,
-    orderGoods: {},
     content: '',
     stars: [0, 1, 2, 3, 4],
     star: 5,
@@ -98,22 +96,7 @@ Page({
     var that = this;
     that.setData({
       orderId: options.orderId,
-      type: options.type,
-      valueId: options.valueId
-    });
-    this.getOrderGoods();
-  },
-  getOrderGoods: function() {
-    let that = this;
-    util.request(api.OrderGoods, {
-      orderId: that.data.orderId,
-      goodsId: that.data.valueId
-    }).then(function(res) {
-      if (res.errno === 0) {
-        that.setData({
-          orderGoods: res.data,
-        });
-      }
+      type: options.type
     });
   },
   onClose: function() {
@@ -127,8 +110,8 @@ Page({
       return false;
     }
 
-    util.request(api.OrderComment, {
-      orderGoodsId: that.data.orderGoods.id,
+    util.request(api.OrderCourseComment, {
+      orderId: that.data.orderId,
       content: that.data.content,
       star: that.data.star,
       hasPicture: that.data.hasPicture,

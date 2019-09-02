@@ -515,6 +515,26 @@ export const asyncRouterMap = [
           title: '小程序配置',
           noCache: true
         }
+      },
+      {
+        path: 'tianyuCourse',
+        component: () => import('@/views/config/tianyuCourse'),
+        name: 'configTinayuCourse',
+        meta: {
+          perms: ['GET /admin/config/tianyuCourse', 'POST /admin/config/tianyuCourse'],
+          title: '课程计划配置',
+          noCache: true
+        }
+      },
+      {
+        path: 'tianyuWx',
+        component: () => import('@/views/config/tianyuWx'),
+        name: 'configTianyuWx',
+        meta: {
+          perms: ['GET /admin/config/tianyuWx', 'POST /admin/config/tianyuWx'],
+          title: '天瑜微信配置',
+          noCache: true
+        }
       }
     ]
   },

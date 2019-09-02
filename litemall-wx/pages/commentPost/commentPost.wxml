@@ -1,16 +1,5 @@
 <view class="container">
   <view class="post-comment">
-    <view class="goods">
-      <view class="img">
-        <image src="{{orderGoods.picUrl}}"></image>
-      </view>
-      <view class="info">
-        <view class="t">
-          <text class="name">{{orderGoods.goodsName}} x{{orderGoods.number}}</text>
-        </view>
-        <view class="attr">{{orderGoods.goodsSpecificationValues}}</view>
-      </view>
-    </view>
     <view class="rater">
       <text class="rater-title">评分</text>
       <block wx:for="{{stars}}" wx:key="*this" wx:for-item="item">
@@ -20,7 +9,7 @@
       <text class="rater-desc">{{starText}}</text>
     </view>
     <view class="input-box">
-      <textarea class="content" focus="true" bindinput="bindInputValue" maxlength="140" placeholder="留言经过筛选后，对所有人可见" />
+      <textarea class="content" focus="true" bindinput="bindInputValue" maxlength="140" placeholder="上课体验如何？" />
       <text class="count">{{140 - content.length}}</text>
     </view>
 

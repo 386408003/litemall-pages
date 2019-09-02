@@ -41,8 +41,8 @@ Page({
             latitude: res.data.tianyu_wx_about_latitude,
             longitude: res.data.tianyu_wx_about_longitude,
             scale: res.data.tianyu_wx_about_scale,
-            linkPhone: res.data.tianyu_wx_about_linkPhone,
-            qqNumber: res.data.tianyu_wx_about_qqNumber,
+            linkPhone: res.data.tianyu_wx_about_phone,
+            qqNumber: res.data.tianyu_wx_about_qqnumber,
             version: res.data.tianyu_wx_about_version
           }
         });

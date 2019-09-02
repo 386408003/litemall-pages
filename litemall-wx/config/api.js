@@ -102,5 +102,10 @@ module.exports = {
   AuthBindPhoneInput: WxApiRoot + 'auth/bindPhoneInput', //绑定微信手机号
   CourseList: WxApiRoot + 'course/list', //课程列表带日期
   CourseInfo: WxApiRoot + 'course/courseInfo', //课程列表
-  OrderCourse: WxApiRoot + 'course/courseInfo', //预约课程
+  OrderCourse: WxApiRoot + 'orderCourse/orderCourse', //预约课程
+  OrderCourseList: WxApiRoot + 'orderCourse/list', //订单列表
+  OrderCourseDetail: WxApiRoot + 'orderCourse/detail', //订单详情
+  OrderCourseCancel: WxApiRoot + 'orderCourse/cancel', //取消订单
+  OrderCourseDelete: WxApiRoot + 'orderCourse/delete', //删除订单
+  OrderCourseComment: WxApiRoot + 'orderCourse/comment', // 评价订单
 };

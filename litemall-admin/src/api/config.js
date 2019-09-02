@@ -59,3 +59,33 @@ export function updateWx(data) {
     data
   })
 }
+
+export function listTianyuCourse() {
+  return request({
+    url: '/config/tianyuCourse',
+    method: 'get'
+  })
+}
+
+export function updateTianyuCourse(data) {
+  return request({
+    url: '/config/tianyuCourse',
+    method: 'post',
+    data
+  })
+}
+
+export function listTianyuWx() {
+  return request({
+    url: '/config/tianyuWx',
+    method: 'get'
+  })
+}
+
+export function updateTianyuWx(data) {
+  return request({
+    url: '/config/tianyuWx',
+    method: 'post',
+    data
+  })
+}

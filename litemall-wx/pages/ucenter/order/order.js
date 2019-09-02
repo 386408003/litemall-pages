@@ -23,7 +23,7 @@ Page({
   },
   getOrderList() {
     let that = this;
-    util.request(api.OrderList, {
+    util.request(api.OrderCourseList, {
       showType: that.data.showType,
       page: that.data.page,
       limit: that.data.limit

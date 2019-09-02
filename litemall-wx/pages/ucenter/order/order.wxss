@@ -71,6 +71,11 @@ page {
   overflow: hidden;
 }
 
+.orders .tips {
+  color: rgb(243, 36, 36);
+  text-align: center;
+}
+
 .order {
   margin-top: 20rpx;
   background: #fff;

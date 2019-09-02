@@ -11,17 +11,14 @@ Page({
    */
   data: {
     calendar: [],
-    scrollLeft: 0,
-    scrollHeight: 0,
+    scrollLeft: 0, //94一格
+    scrollHeight: 0, //190一格
     currentIndex: 0,
     currentDate:'',
     hdflag:0
   },
   // 通过课程数量计算页面高度
   calcScrollHeight: function () {
-    // console.log(this.data.currentIndex)
-    // console.log(this.data.currentDate)
-    // console.log(this.data.calendar[this.data.currentIndex].courseInfo)
     let courseLen = this.data.calendar[this.data.currentIndex].courseInfo.length;
     // console.log(courseLen);
     // 没有课程也可滑动
@@ -54,7 +51,12 @@ Page({
       cDate: that.data.currentDate
     }).then(function (res) {
       if (res.errno === 0) {
-        that.data.calendar[that.data.currentIndex].courseInfo = res.data.list
+        // console.log(that.data.calendar[that.data.currentIndex].courseInfo);
+        // console.log(res.data.list);
+        let courseInfo = "calendar[" + that.data.currentIndex + "].courseInfo";
+        that.setData({
+          [courseInfo]: res.data.list
+        })
       }
       // console.log(that.data.calendar);
     });
@@ -64,12 +66,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // 获取本地数据
-    var phoneNumber = wx.getStorageSync('phoneNumber');
-    console.log(phoneNumber);
-    if (!phoneNumber) {
-      util.showErrorToast('您还未绑定手机号')
-    }
     // 首次onLoad赋值今天
     var curDate = util.formatTime(new Date());
     console.log(curDate);
@@ -131,6 +127,7 @@ Page({
       currentDate: event.currentTarget.dataset.date
     })
     this.setData({
+      scrollLeft: 94 * (this.data.currentIndex - 2),
       scrollHeight: this.calcScrollHeight()
     })
     this.onQueryCourse();
@@ -138,58 +135,40 @@ Page({
   // 预约课程
   orderCourse: function (event) {
     var that = this;
-    util.request(api.CourseInfo, {
-      cDate: that.data.currentDate
+    if (app.globalData.hasLogin) {
+      // 获取本地数据
+      let userInfo = wx.getStorageSync('userInfo');
+      var phoneNumber = userInfo.phoneNumber;
+      // console.log(phoneNumber);
+      if (!phoneNumber) {
+        util.showErrorToast('您还未绑定手机号')
+      }
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    };
+    console.log(event.detail.formId);
+    console.log(event.detail.value.coursePlanId);
+    util.request(api.UserFormIdCreate, {
+      formId: event.detail.formId
     }).then(function (res) {
       if (res.errno === 0) {
-        that.data.calendar[that.data.currentIndex].courseInfo = res.data.list
-      }
-      // console.log(that.data.calendar);
-    });
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          if (that.data.phoneNumber) {
-            const query = Bmob.Query('orderCourse');
-            query.set("openid", that.data.openid);
-            query.set("nickName", app.globalData.userInfo.nickName)
-            query.set("courseId", event.currentTarget.dataset.courseid);
-            query.set("courseDate", event.currentTarget.dataset.c_date);
-            query.set("courseTime", event.currentTarget.dataset.c_time);
-            query.set("phoneNumber", that.data.phoneNumber);
-
-            query.save().then(res => {
-              that.onUpdateCourse(event.currentTarget.dataset.c_person, event.currentTarget.dataset.courseid);
-              console.log(event.currentTarget.dataset.c_person - 1);
-              wx.showToast({
-                title: '预约成功',
-              })
-              that.onQuery();
-            }).catch(err => {
-              wx.showToast({
-                icon: 'none',
-                title: '预约失败，您所预约的课程可能已被预约！'
-              })
-              console.error('[数据库] [新增orderCourse记录] 失败：', err);
+        // 生成formId后开始预约
+        util.request(api.OrderCourse, {
+          coursePlanId: event.detail.value.coursePlanId
+        }, 'POST').then(function (res) {
+          if (res.errno === 0) {
+            wx.showToast({
+              title: '预约成功'
             })
-
+            that.onQueryCourse();
           } else {
-            //显示输入手机号
-            this.setData({
-              hiddenPhoneModal: false
-            });
+            util.showErrorToast(res.errmsg);
           }
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: '请先点击屏幕下方[我的]进行授权！'
-          })
-        }
+        });
       }
-    })
+    });
   },
   // 滑动事件
   handletouchmove: function (event) {
@@ -252,6 +231,7 @@ Page({
     }
     that.setData({
       currentDate: that.data.calendar[that.data.currentIndex].date,
+      scrollLeft: 94 * (that.data.currentIndex-2),
       scrollHeight: that.calcScrollHeight()
     })
     that.onQueryCourse();

@@ -104,6 +104,7 @@
 }
 .bus-list .bus-list-item.disabled .tobooking {
   background-color: #bebcbc;
+  pointer-events: none;
 }
 
 .bus-list .bus-list-item .detail {
