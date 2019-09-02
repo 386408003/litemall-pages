@@ -142,33 +142,34 @@ Page({
       // console.log(phoneNumber);
       if (!phoneNumber) {
         util.showErrorToast('您还未绑定手机号')
+        return false;
       }
+      //console.log(event.detail.formId);
+      //console.log(event.detail.value.coursePlanId);
+      util.request(api.UserFormIdCreate, {
+        formId: event.detail.formId
+      }).then(function (res) {
+        if (res.errno === 0) {
+          // 生成formId后开始预约
+          util.request(api.OrderCourse, {
+            coursePlanId: event.detail.value.coursePlanId
+          }, 'POST').then(function (res) {
+            if (res.errno === 0) {
+              wx.showToast({
+                title: '预约成功'
+              })
+              that.onQueryCourse();
+            } else {
+              util.showErrorToast(res.errmsg);
+            }
+          });
+        }
+      });
     } else {
       wx.navigateTo({
         url: "/pages/auth/login/login"
       });
     };
-    console.log(event.detail.formId);
-    console.log(event.detail.value.coursePlanId);
-    util.request(api.UserFormIdCreate, {
-      formId: event.detail.formId
-    }).then(function (res) {
-      if (res.errno === 0) {
-        // 生成formId后开始预约
-        util.request(api.OrderCourse, {
-          coursePlanId: event.detail.value.coursePlanId
-        }, 'POST').then(function (res) {
-          if (res.errno === 0) {
-            wx.showToast({
-              title: '预约成功'
-            })
-            that.onQueryCourse();
-          } else {
-            util.showErrorToast(res.errmsg);
-          }
-        });
-      }
-    });
   },
   // 滑动事件
   handletouchmove: function (event) {
