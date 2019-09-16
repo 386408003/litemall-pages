@@ -461,6 +461,16 @@ export const asyncRouterMap = [
           title: '课程安排',
           noCache: true
         }
+      },
+      {
+        path: 'orderCourse',
+        component: () => import('@/views/tianyu/orderCourse'),
+        name: 'orderCourse',
+        meta: {
+          perms: ['GET /admin/orderCourse/list', 'GET /admin/orderCourse/detail'],
+          title: '课程订单管理',
+          noCache: true
+        }
       }
     ]
   },
