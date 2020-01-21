@@ -1,3 +1,5 @@
 # litemall-pages
-litemall 微信页面模块
-litemall vue后台页面模块
+litemall-admin	微信后台页面
+litemall-vue	手机版小商城页面
+litemall-wx		微信小程序页面
+litemall-vue	微信小程序商城页面

@@ -2,8 +2,8 @@
 
 设置nodejs prefix（全局）和cache（缓存）路径
 	在nodejs安装路径下，新建node_global和node_cache两个文件夹
-	npm config set cache "D:\vueProject\nodejs\node_cache"
-	npm config set prefix "D:\vueProject\nodejs\node_global"
+	npm config set cache "D:\ProgramFiles\nodejs\node_cache"
+	npm config set prefix "D:\ProgramFiles\nodejs\node_global"
 
 查看全部npm默认设置：
 	命令：npm config ls –l
@@ -74,3 +74,10 @@
 	'semi': 0
 
 语句结尾空格问题，报错 "Trailing spaces not allowed"
+
+
+项目启动：
+	cnpm install(测试环境)
+	cnpm run dev(测试环境)
+
+	cnpm run build:prod(生产环境)

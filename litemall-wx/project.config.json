@@ -6,6 +6,7 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
 		"autoAudits": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
@@ -18,7 +19,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.1",
+	"libVersion": "2.10.1",
 	"appid": "wx928e460d5dbe4f5a",
 	"projectname": "litemall-wx",
 	"simulatorType": "wechat",
