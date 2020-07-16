@@ -8,6 +8,14 @@ export function fetchList(query) {
   })
 }
 
+export function updateUser(data) {
+  return request({
+    url: '/user/update',
+    method: 'post',
+    data
+  })
+}
+
 export function listAddress(query) {
   return request({
     url: '/address/list',

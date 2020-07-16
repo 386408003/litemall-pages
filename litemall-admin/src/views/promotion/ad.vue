@@ -29,7 +29,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="广告位置" prop="position"/>
+      <el-table-column align="center" label="广告位置" prop="position">
+        <template slot-scope="scope">
+          <el-tag :type="success">{{ scope.row.position == 1 ? '首页' : '活动页' }}</el-tag>
+        </template>
+      </el-table-column>
 
       <el-table-column align="center" label="活动链接" prop="link"/>
 

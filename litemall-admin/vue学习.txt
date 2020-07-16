@@ -76,8 +76,12 @@
 语句结尾空格问题，报错 "Trailing spaces not allowed"
 
 
-项目启动：
+litemall项目启动：
 	cnpm install(测试环境)
 	cnpm run dev(测试环境)
 
 	cnpm run build:prod(生产环境)
+
+litemall项目开发情况：
+	router/index.js
+	api/user.js
