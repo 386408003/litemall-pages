@@ -15,7 +15,8 @@ Page({
     scrollHeight: 0, //190一格
     currentIndex: 0,
     currentDate:'',
-    hdflag:0
+    hdLmd:40, //滑动灵敏度
+    hdflag:0 //滑动标志
   },
   // 通过课程数量计算页面高度
   calcScrollHeight: function () {
@@ -34,6 +35,7 @@ Page({
     util.request(api.CourseList).then(function (res) {
       if (res.errno === 0) {
         // 先赋值calendar
+        // console.log(res.data.list);
         that.setData({
           calendar: res.data.list
         });
@@ -47,6 +49,7 @@ Page({
   //获取所有某天课程信息
   onQueryCourse: function () {
     var that = this;
+    // console.log(that.data.currentDate);
     util.request(api.CourseInfo, {
       cDate: that.data.currentDate
     }).then(function (res) {
@@ -130,7 +133,7 @@ Page({
       scrollLeft: 94 * (this.data.currentIndex - 2),
       scrollHeight: this.calcScrollHeight()
     })
-    this.onQueryCourse();
+    // this.onQueryCourse();
   },
   // 预约课程
   orderCourse: function (event) {
@@ -158,10 +161,10 @@ Page({
               wx.showToast({
                 title: '预约成功'
               })
-              that.onQueryCourse();
             } else {
               util.showErrorToast(res.errmsg);
             }
+            that.onQueryCourse();
           });
         }
       });
@@ -171,37 +174,50 @@ Page({
       });
     };
   },
+  // 滑动开始
+  handletouchstart: function (event) {
+    let that = this;
+    that.setData({ startpoint: [event.touches[0].pageX, event.touches[0].pageY] });
+  },
   // 滑动事件
   handletouchmove: function (event) {
-    let currentX = event.touches[0].pageX;
-    let currentY = event.touches[0].pageY;
-    let tx = currentX - this.data.lastX;
-    let ty = currentY - this.data.lastY;
+    //当前触摸点坐标
+    let that = this;
+    let curPoint = [event.touches[0].pageX, event.touches[0].pageY];
+    let startpoint = that.data.startpoint;
     let text = "";
-    // 左右方向滑动
-    if (Math.abs(tx) > Math.abs(ty)) {
-      if (tx < 0) {
+    // console.log("startx:" + startpoint[0] + "starty:" + startpoint[1])
+    // console.log("curx:" + curPoint[0] + "cury:" + curPoint[1])
+		//比较pagex值
+    if (curPoint[0] < startpoint[0]) {
+      if (Math.abs(curPoint[0] - startpoint[0]) >= Math.abs(curPoint[1] - startpoint[1]) 
+      && Math.abs(curPoint[0] - startpoint[0]) > that.data.hdLmd) {
         text = "向左滑动";
         this.data.hdflag = 1;
-      } else if (tx > 0) {
+      } else {
+        if (curPoint[1] >= startpoint[1]) {
+          text = "向下滑动";
+          this.data.hdflag = 4
+        } else {
+          text = "向上滑动";
+          this.data.hdflag = 3
+        }
+      }
+    } else {
+      if (Math.abs(curPoint[0] - startpoint[0]) >= Math.abs(curPoint[1] - startpoint[1]) 
+      && Math.abs(curPoint[0] - startpoint[0]) > that.data.hdLmd) {
         text = "向右滑动";
         this.data.hdflag = 2;
+      } else {
+        if (curPoint[1] >= startpoint[1]) {
+          text = "向下滑动";
+          this.data.hdflag = 4
+        } else {
+          text = "向上滑动";
+          this.data.hdflag = 3
+        }
       }
-    // 上下方向滑动
-    } else {
-      if (ty < 0) {
-        text = "向上滑动";
-        this.data.hdflag = 3
-
-      } else if (ty > 0) {
-        text = "向下滑动";
-        this.data.hdflag = 4
-      }
-
     }
-    // 将当前坐标进行保存以进行下一次计算
-    this.data.lastX = currentX;
-    this.data.lastY = currentY;
   },
   // 绑定事件---滑动完毕
   handletouchend: function (event) {
@@ -235,6 +251,6 @@ Page({
       scrollLeft: 94 * (that.data.currentIndex-2),
       scrollHeight: that.calcScrollHeight()
     })
-    that.onQueryCourse();
+    // that.onQueryCourse();
   }
 })
